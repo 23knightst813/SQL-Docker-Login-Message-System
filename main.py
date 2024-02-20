@@ -43,7 +43,6 @@ def check_loging():
 
 def write_account():
 
-    global USERID
     global EMAIL
     global PASSWORD
     print("Writing account")
@@ -98,4 +97,28 @@ def logout():
     # Do something with cookies and sessions
 
 
-check_loging()
+def temp_menu():
+    print("1. Write account")
+    print("2. Change password")
+    print("3. Delete account")
+    print("4. Logout")
+    print("5. Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        write_account()
+    elif choice == "2":
+        change_password()
+    elif choice == "3":
+        delete_account()
+    elif choice == "4":
+        logout()
+    elif choice == "5":
+        exit()
+    else:
+        print("Invalid choice")
+    temp_menu()
+
+
+temp_menu()
