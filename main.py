@@ -1,9 +1,34 @@
 import psycopg2
 import psycopg2.extras
+from flask import Flask, request , render_template, redirect , url_for
 
-EMAIL = "hello32@poopoo.con"
-PASSWORD = "gfetiugufieg"
-USERID = 0
+
+
+
+EMAIL = "TheoisCool@gmail.con"
+PASSWORD = "fghjkl;"
+
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World'
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    print("Login start")
+    if request.method == 'POST':
+        print("Post")
+        email = request.form['email']
+        password = request.form['password']
+        print(email)
+        print(password)
+        return redirect(('/'))
+        
+    if request.method == 'GET':
+        return render_template('login.html')
+
 
 try:
     conn = psycopg2.connect(
@@ -15,6 +40,7 @@ try:
     )
     conn.autocommit = True
     print("Connected")
+
 
 except:
     print("Not connected")
@@ -35,11 +61,11 @@ def check_loging():
 
     if user_fetch["password"] == PASSWORD:
         print("Account password matches")
-        login()
+        return True
 
     else:
         print("Account password or email does not match")
-
+        return False
 
 def write_account():
 
@@ -63,9 +89,7 @@ def write_account():
         print("Account already exists")
 
 
-def login():
-    print("Logged in")
-    # Do something with cookies and sessions
+
 
 
 def change_password():
@@ -120,5 +144,9 @@ def temp_menu():
         print("Invalid choice")
     temp_menu()
 
+print("")
+#temp_menu()
 
-temp_menu()
+
+if __name__ == '__main__':
+    app.run(debug=True)
