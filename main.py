@@ -52,7 +52,7 @@ def chnagepassword():
 
 
 @app.route("/login", methods=["GET", "POST"])
-defv login():
+def login():
     print("Login start")
     if request.method == "POST":
         print("Post")
