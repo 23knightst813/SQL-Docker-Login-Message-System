@@ -22,15 +22,37 @@ def home():
         response = make_response(render_template("index.html", email=email))
         response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
         response.headers["Pragma"] = "no-cache"
-        
+
         return response    
 
 
+@app.route("/changepassword", methods=["GET", "POST"])
+def chnagepassword():
+    print("Change password start")
+    if request.method == "POST":
+        print("Post")
+        EMAIL = request.form["email"]
+        PASSWORD = request.form["password"]
+        print(EMAIL)
+        print(PASSWORD)
+
+        x = change_password(EMAIL, PASSWORD)
+
+        if x == True:
+            print("Password changed")
+
+        if x == False:
+            print("No account found")
+
+        return redirect(("/"))
+
+    if request.method == "GET":
+        return render_template("changepassword.html")
 
 
 
 @app.route("/login", methods=["GET", "POST"])
-def login():
+defv login():
     print("Login start")
     if request.method == "POST":
         print("Post")
