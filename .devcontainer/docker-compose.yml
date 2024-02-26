@@ -7,6 +7,7 @@ services:
       dockerfile: dev.Dockerfile
     volumes:
       - ..:/workspace:cached
+
     command: sleep infinity
     # deploy:
     #   resources:
@@ -22,6 +23,8 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: secret
       POSTGRES_DB: database
+    volumes:
+      - ../db:/var/lib/postgresql/data:cached
   adminer:
     image: adminer
     ports:
