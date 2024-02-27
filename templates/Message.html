@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Send Message</title>
+  </head>
+  <script>
+    if ((status = "True")) {
+      alert("Message sent successfully!", "success");
+    }
+    if ((status = "False")) {
+      alert("Failed to send message!", "error");
+    }
+  </script>
+
+  <body>
+    <h2>Enter Details</h2>
+    <form action="/Message" method="post">
+      <label for="email">Targets Email:</label><br /><br />
+      <input type="email" id="email" name="email" required /><br />
+      <br /><br />
+      <label for="text">Enter Your Message:</label><br /><br />
+      <input type="text" id="Message" name="Message" /><br /><br />
+      <input type="submit" value="Send" />
+    </form>
+  </body>
+</html>
