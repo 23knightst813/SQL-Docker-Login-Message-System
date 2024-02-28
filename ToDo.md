@@ -8,7 +8,7 @@ Login System
 
     - [ ] - Refactoring ( Use multiple pyton files)
     - [ ] - Spring Cleaning
-
+    - [ ] - Fix Delted Account as well as change password
     - [ ] - Message Functionlaity
         - [ ] - Inbox system
 
