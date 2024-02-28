@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container {
+        width: 200px;
+        border: 1px solid black;
+        overflow: auto; /* Enable scroll if the content overflows */
+      }
+      .message {
+        border: 1px solid blue;
+        margin: 5px;
+        padding: 5px;
+      }
+      .sender {
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      window.onload = function() {
+        var container = document.getElementById('container');
+
+        {% for {{messages}} in inbox %}
+          addMessage("{{ message.text }}", "{{ message.sender }}");
+        {% endfor %}
+
+        function addMessage(messageText, sender) {
+          var newMessage = document.createElement('div');
+          newMessage.className = 'message';
+
+          var senderHeading = document.createElement('h3');
+          senderHeading.className = 'sender';
+          senderHeading.textContent = sender + ':';
+          newMessage.appendChild(senderHeading);
+
+          var messageTextElement = document.createElement('p');
+          messageTextElement.textContent = messageText;
+          newMessage.appendChild(messageTextElement);
+
+          container.appendChild(newMessage);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <!-- Messages will be added here dynamically -->
+    </div>
+  </body>
+</html>

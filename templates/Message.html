@@ -2,16 +2,24 @@
 <html>
   <head>
     <title>Send Message</title>
-  </head>
-  <script>
-    if ((status = "True")) {
-      alert("Message sent successfully!", "success");
-    }
-    if ((status = "False")) {
-      alert("Failed to send message!", "error");
-    }
-  </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelector("form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
 
+            fetch("/Message", {
+              method: "POST",
+              body: new FormData(event.target), // event.target is the form
+            })
+              .then((response) => response.text())
+              .then((data) => alert(data))
+              .catch((error) => console.error("Error:", error));
+          });
+      });
+    </script>
+  </head>
   <body>
     <h2>Enter Details</h2>
     <form action="/Message" method="post">

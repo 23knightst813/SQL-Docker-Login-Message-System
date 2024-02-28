@@ -13,11 +13,15 @@
         "oderwat.indent-rainbow",
         "esbenp.prettier-vscode",
         "mechatroner.rainbow-csv",
+
+        "ms-python.pylint",
         "foxundermoon.shell-format",
         "ms-python.black-formatter",
+        "ms-pyright.pyright",
+
         "ms-python.isort",
-        "ms-python.vscode-pylance",
-        "ms-python.pylint",
+        // "ms-python.vscode-pylance",
+
         "ms-python.python",
         "ms-python.debugpy"
       ],
@@ -61,7 +65,7 @@
         "terminal.integrated.profiles.linux": {
           "zsh": {
             "path": "/bin/fish"
-          },
+          }
         }
       }
     }
