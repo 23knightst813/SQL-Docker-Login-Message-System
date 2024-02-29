@@ -12,3 +12,4 @@ ply==3.11
 psycopg2-binary==2.9.9
 pycparser==2.21
 Werkzeug==3.0.1
+numpy==1.26.0

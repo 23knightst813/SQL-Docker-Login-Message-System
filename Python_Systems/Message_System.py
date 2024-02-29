@@ -1,12 +1,14 @@
+from email import message
 from flask import session
 from Account_Control import get_your_id
 import psycopg2
 import psycopg2.extras
-
+import numpy as np
 import datetime
 
 conn = psycopg2.connect(
         dbname="database",
+
         user="username",
         password="secret",
         host="postgres_database",
@@ -72,3 +74,38 @@ def delete_user_messages():
     )
 
     return True
+
+
+def inbox_info_get():
+    print('inbox')
+
+    # Find how many messages
+
+    your_id = get_your_id()
+
+    cur = conn.cursor()
+
+    #fetch current row
+    cur.execute("""
+                SELECT * FROM messages
+                INNER JOIN users ON users.id = messages.sent_id
+                WHERE receiver_id = %s
+                ORDER BY time DESC;
+                """, (your_id,))
+
+    data = cur.fetchall()
+
+    print(data)
+
+    messagesinfo = []  # Initialize as empty list
+    message = None
+    sender_name = None
+    time = None  # Initialize variables separately
+
+    for row in data:
+        message = row["message"]
+        sender_name = row['email'] 
+        time = row['time']
+        messagesinfo.append({'message': message, 'email': sender_name, 'time': time})
+
+    return messagesinfo

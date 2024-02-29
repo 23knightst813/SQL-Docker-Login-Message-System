@@ -3,8 +3,8 @@
 import psycopg2
 import psycopg2.extras
 from flask import Flask, redirect, render_template, request, session, url_for, make_response, flash
-
-
+from Message_System import inbox_info_get
+from datetime import datetime
 from Account_Control import change_password , delete_account, write_account, check_login
 from check_tables_exsits import check_messages_table_exsits , check_users_table_exists
 from Message_System import send_message , delete_user_messages
@@ -191,18 +191,24 @@ def send_message_page():
 
 @app.route('/inbox' , methods=["GET", "POST"])
 def inbox():
+
     print('Inbox')
     if request.method == "GET":
         print('get')
+        messages = inbox_info_get()
 
-    messages 
-    sender 
-    messagetext 
+        print(messages)
 
+        # If there are no messages, add a message from admin
+        if not messages:
+            messages = [{'message': 'You have no messages', 'email': 'admin', 'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}]
+
+        return render_template('inbox.html', messages=messages)
 
     if request.method == "POST":
         print('post')
         return render_template('inbox.html')
+
 
 try:
     conn = psycopg2.connect(

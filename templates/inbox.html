@@ -20,8 +20,8 @@
       window.onload = function() {
         var container = document.getElementById('container');
 
-        {% for {{messages}} in inbox %}
-          addMessage("{{ message.text }}", "{{ message.sender }}");
+        {% for message in messages %}
+          addMessage("{{ message['message'] }}", "{{ message['email'] }} {{ message['time'] }}");
         {% endfor %}
 
         function addMessage(messageText, sender) {

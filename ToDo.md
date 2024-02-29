@@ -6,7 +6,6 @@ Login System
 
 # Today
 
-    - [ ] - Fix Delted Account as well as change password
     - [ ] - Message Functionlaity
         - [ ] - Inbox system
 
@@ -26,3 +25,4 @@ Login System
   - [✓] - Sending System
 - [✓] - Refactoring ( Use multiple pyton files)
 - [✓] - Spring Cleaning
+- [✓] - Fix Delted Account as well as change password

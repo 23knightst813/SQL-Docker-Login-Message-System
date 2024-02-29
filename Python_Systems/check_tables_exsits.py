@@ -75,7 +75,7 @@ def check_users_table_exists():
         )
         """
     )
-    result = cur.fetchone()[0]
+    result = cur.fetchone()
     print(result)
 
     if result is False:
