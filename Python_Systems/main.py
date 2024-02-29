@@ -178,11 +178,17 @@ def send_message_page():
 
 
             if x == True:
+                print()
                 return('Message sent successfully!')
             if x == False:
+                print()
                 return('Failed to send message!')
 
-            return ("x is neither true nor false")
+            else:
+                pass
+                
+
+            return redirect('/')
 
         if request.method == "GET":
             print('get')
@@ -230,6 +236,6 @@ check_users_table_exists()
 check_messages_table_exsits()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)
 
 
