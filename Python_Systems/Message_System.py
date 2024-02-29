@@ -1,5 +1,5 @@
 from flask import session
-
+from Account_Control import get_your_id
 import psycopg2
 import psycopg2.extras
 
@@ -54,23 +54,21 @@ def send_message(conn , TARGET_EMAIL, TARGET_MESSAGE):
         print('Sent')
         return True
 
-def get_your_id():
-    #Find your id aka you
 
-    #get the email
-    sender_email = session["email"]
 
-    #sql the email to get the id
+def delete_user_messages():
+    print('')
+
+    userId = get_your_id()
 
     cur = conn.cursor()
-    cur.execute('''
 
-        SELECT id
-        FROM users
-        WHERE Email = %s
 
-''', (sender_email,))
-    your_id = cur.fetchone()
+    cur.execute(
+        """
+        DELETE FROM messages WHERE receiver_id = %s
+        """,
+        (userId,),
+    )
 
-    return your_id
-
+    return True

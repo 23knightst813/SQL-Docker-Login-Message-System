@@ -32,12 +32,12 @@ def check_messages_table_exsits():
         print("Table does not exist")
         cur.execute(
             """
-                CREATE SEQUENCE messages_message_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 18 CACHE 1;
+                CREATE SEQUENCE messages_message_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 41 CACHE 1;
 
                 CREATE TABLE "public"."messages" (
                     "message_id" integer DEFAULT nextval('messages_message_id_seq') NOT NULL,
-                    "receiver_id" integer NOT NULL,
-                    "sent_id" integer NOT NULL,
+                    "receiver_id" integer,
+                    "sent_id" integer,
                     "message" text NOT NULL,
                     "time" timestamp,
                     CONSTRAINT "messages_pkey" PRIMARY KEY ("message_id")
@@ -56,7 +56,7 @@ def check_messages_table_exsits():
 
                 ALTER TABLE ONLY "public"."messages" ADD CONSTRAINT "messages_receiver_id_fkey" FOREIGN KEY (receiver_id) REFERENCES users(id) NOT DEFERRABLE;
                 ALTER TABLE ONLY "public"."messages" ADD CONSTRAINT "messages_sent_id_fkey" FOREIGN KEY (sent_id) REFERENCES users(id) NOT DEFERRABLE;
-            
+                            
             """
         )
 

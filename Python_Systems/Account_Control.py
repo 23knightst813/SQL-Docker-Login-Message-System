@@ -1,6 +1,7 @@
 
 import psycopg2
 import psycopg2.extras
+from flask import Flask, session
 
 conn = psycopg2.connect(
         dbname="database",
@@ -12,14 +13,17 @@ conn = psycopg2.connect(
 conn.autocommit = True
 print("Connected")
 
-def change_password(conn, EMAIL, PASSWORD):
+def change_password(conn, PASSWORD):
     print("Changing password")
+
+    your_id = get_your_id()
+
     cur = conn.cursor()
     cur.execute(
         """
-        UPDATE users SET password = %s WHERE Email = %s
+        UPDATE users SET password = %s WHERE id = %s
         """,
-        (PASSWORD, EMAIL),
+        (PASSWORD, your_id),
     )
     if cur.rowcount == 0:
         print("No user found with the provided email")
@@ -28,17 +32,27 @@ def change_password(conn, EMAIL, PASSWORD):
         print("Password changed")
         return True
     
-def delete_account(conn, EMAIL, PASSWORD):
+def delete_account(conn,  PASSWORD):
+
     print("Deleting account")
-    print(f"Email: {EMAIL}, Password: {PASSWORD}")
-    print("Session Email", session["email"])
+    print(f"Password: {PASSWORD}")
+
+    userId = get_your_id()
+
+    print(userId)
+
     cur = conn.cursor()
     cur.execute(
         """
-        DELETE FROM users WHERE Email = %s AND Password = %s
+        DELETE FROM users WHERE id = %s AND Password = %s
         """,
-        (session["email"], PASSWORD),
+        (userId, PASSWORD),
     )
+
+
+
+
+
     print(cur.rowcount)
     if cur.rowcount == 0:
         print("No user found with the provided email")
@@ -90,3 +104,22 @@ def check_login(conn, EMAIL, PASSWORD):
         return False
     
     
+def get_your_id():
+    #Find your id aka you
+
+    #get the email
+    sender_email = session["email"]
+
+    #sql the email to get the id
+
+    cur = conn.cursor()
+    cur.execute('''
+
+        SELECT id
+        FROM users
+        WHERE Email = %s
+
+''', (sender_email,))
+    your_id = cur.fetchone()
+
+    return your_id

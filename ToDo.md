@@ -6,8 +6,6 @@ Login System
 
 # Today
 
-    - [ ] - Refactoring ( Use multiple pyton files)
-    - [ ] - Spring Cleaning
     - [ ] - Fix Delted Account as well as change password
     - [ ] - Message Functionlaity
         - [ ] - Inbox system
@@ -26,3 +24,5 @@ Login System
 
 - [ ][✓] - Message Functionlaity
   - [✓] - Sending System
+- [✓] - Refactoring ( Use multiple pyton files)
+- [✓] - Spring Cleaning

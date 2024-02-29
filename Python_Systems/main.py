@@ -7,7 +7,7 @@ from flask import Flask, redirect, render_template, request, session, url_for, m
 
 from Account_Control import change_password , delete_account, write_account, check_login
 from check_tables_exsits import check_messages_table_exsits , check_users_table_exists
-from Message_System import send_message
+from Message_System import send_message , delete_user_messages
 
 
 app = Flask(__name__, template_folder='../templates')
@@ -43,12 +43,12 @@ def chnagepassword():
     print("Change password start")
     if request.method == "POST":
         print("Post")
-        EMAIL = request.form["email"]
+
         PASSWORD = request.form["password"]
-        print(EMAIL)
+
         print(PASSWORD)
 
-        x = change_password(conn, EMAIL, PASSWORD)
+        x = change_password(conn, PASSWORD)
 
 
         if x == True:
@@ -129,13 +129,22 @@ def deleteaccount():
     print("Delete account start")
     if request.method == "POST":
         print("Post")
-        EMAIL = request.form["email"]
+
         PASSWORD = request.form["password"]
-        print(EMAIL)
+        choice_delete_messages =  request.form["alsodeltemessages"]
+
         print(PASSWORD)
+        print('choice_delete_messages' , choice_delete_messages)
 
-        x = delete_account(conn, EMAIL, PASSWORD)
 
+        if choice_delete_messages == True:
+
+            delete_user_messages()
+
+        else:
+            pass
+
+        x = delete_account(conn, PASSWORD)
 
         if x == True:
             print("Deleted account")
