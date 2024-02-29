@@ -6,9 +6,7 @@ Login System
 
 # Today
 
-    - [ ] - Message Functionlaity
-        - [ ] - Inbox system
-
+- [ ] - Improve Messageing Capiblity With A DM Like Structure with live updates
 - [ ] - Server Side User Sessions
 - [ ] - Add Password Hashing
 - [ ] - Add Input Valadation
@@ -21,8 +19,10 @@ Login System
 
 ### Completed Column ✓
 
-- [ ][✓] - Message Functionlaity
+- [✓][✓] - Message Functionlaity
   - [✓] - Sending System
 - [✓] - Refactoring ( Use multiple pyton files)
 - [✓] - Spring Cleaning
 - [✓] - Fix Delted Account as well as change password
+  - [✓] - Message Functionlaity
+    - [✓] - Inbox system

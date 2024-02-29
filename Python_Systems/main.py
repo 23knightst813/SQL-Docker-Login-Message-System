@@ -201,7 +201,7 @@ def inbox():
 
         # If there are no messages, add a message from admin
         if not messages:
-            messages = [{'message': 'You have no messages', 'email': 'admin', 'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}]
+              messages = [{'message': 'You have no messages', 'email': 'admin', 'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}]
 
         return render_template('inbox.html', messages=messages)
 

@@ -83,7 +83,7 @@ def inbox_info_get():
 
     your_id = get_your_id()
 
-    cur = conn.cursor()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
     #fetch current row
     cur.execute("""
